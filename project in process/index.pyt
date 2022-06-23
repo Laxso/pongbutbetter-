@@ -1,13 +1,63 @@
 
 
+#rectangle summon commands
+import turtle
+t = turtle.Turtle()
+def draw_rectangle(length, height):
+    for i in range(0,4):
+        if i % 2 == 0: 
+            t.forward(length)
+            t.right(90)
+        else: 
+            t.forward(height)
+            t.right(90)
 
-#Game Screen 
-game = Group(Rect(0,0,400,400, fill ='black'),
-Line(200,0,200,400, lineWidth=10,dashes=True,fill='white')
-)
+#Game Screen
+
+game = turtle.Turtle()
+draw_rectangle (0,0,400,400, fill ='black'),
+
+#line commands
+
+
+from turtle import *
+import turtle
+ 
+tur = turtle.Turtle()
+tur.hideturtle()
+ 
+turtle.done()
+
+def drawdot(space,x):
+  for i in range(x):
+    for j in range(x):
+        
+
+        tur.dot()
+          
+
+       
+
+   
+    tur.down()
+    goto(0,300)
+    
+    tur.down()
+    goto(0,-300)
+    
+  
+
+tur.penup()
+drawdot(900,1)
+  
+
+tur.hideturtle()
+
+turtle.done()
 
 #Title screen
-TitleScreen =Group (Rect(0,0,400,400,fill='black'),
+TitleScreen = turtle.Turtle()
+(draw_rectangle(0,0,400,400,fill='black'),
 Label('PONG',200,200,fill='White',size=120,bold=True),
 Label('press r to start',200,300,fill='gray',size=15,bold=True),
 Label('-player one-',200,320,fill='gray',size=15,bold=True),
@@ -16,40 +66,47 @@ Label('-player two-',200,360,fill='gray',size=15,bold=True),
 Label('(up key) to go up amd (down key ) to go down',200,380,fill='gray',size=15,bold=True),
 
 )
+turtle.done()
 
 
 #score label
 LS = Label(0,160,40,fill='white',size=55,visible=False)
 RS = Label(0,260,40,fill='white',size=55,visible=False)
 
-
-
 #Ball Label
-ball= Rect(200,200,10,10,fill='white',visible=False)
 
+Ball= turtle.Turtle()
+draw_rectangle(200,200,10,10,fill='white',visible=False)
+
+turtle.done()
 #player1 label
 
-player1 = Rect(40,160,15,65,fill='white',visible= False)
+
+PLayer1= turtle.Turtle()
+draw_rectangle(40,160,15,65,fill='white',visible= False)
+
+turtle.done()
 
 #player2 label
 
-player2 = Rect(360,160,15,65,fill='white',visible= False)
 
+Player2= turtle.Turtle()
+draw_rectangle(360,160,15,65,fill='white',visible= False)
+turtle.done()
 #key player commands
 def onKeyHold(keys):
 
     if ( 'w' in keys):
-        player.centerY += -20
+        PLayer1.centerY += -20
     
-    if('s' in keys):
-        player.centerY += +20
+    if( 's' in keys):
+        PLayer1.centerY += +20
     
     if ( 'up' in keys):
-        player.centerY += -20
+        Player2.centerY += -20
     
-    if('down' in keys):
-        player.centerY +=  20
-
+    if( 'down' in keys):
+        Player2.centerY +=  20
 
 #key visible commands
 def onKeyPress(keys):
@@ -64,48 +121,41 @@ def onKeyPress(keys):
 
         Ball.visible = True
 
-        player1.visible = True
+        PLayer1.visible = True
 
-        player2.visible = True
-
-
-
-
-
+        Player2.visible = True
 
 #balls og speed 
-app.stepsPerSecond = 20
-ball.dx = 10
-ball.dy = 5
+Ball.stepsPerSecond = 20
+Ball.dx = 10
+Ball.dy = 5
 
 #Ball Bounce
 def onStep():
-    ball.centerX += ball.dx
-    ball.centerY -= ball.dy
+    Ball.centerX += Ball.dx
+    Ball.centerY -= Ball.dy
 
 
-    if(ball.hitsShape(player2) == True):
-        ball.dx = -ball.dx
-        ball.dy = -ball.dy
-        app.stepsPerSecond += 1
+    if(Ball.hitsShape(Player2) == True):
+        Ball.dx = -Ball.dx
+        Ball.dy = -Ball.dy
+        Ball.stepsPerSecond += 1
     
-    if (ball.hitsShape(player) == True):
-        ball.dx = -ball.dx
-        ball.dy = +ball.dy
-        app.stepsPerSecond += 1
-
-
+    if (Ball.hitsShape(PLayer1) == True):
+        Ball.dx = -Ball.dx
+        Ball.dy = +Ball.dy
+        Ball.stepsPerSecond += 1
 
 #ballReset
-    if((ball.left < 0) or (ball.right > 400)):
-        ball.centerX = 200
-        ball.centerY = 200
-        ball.dx = -ball.dx
-        app.stepsPerSecond = 30
-        ball.dx = 10
+    if((Ball.left < 0) or (Ball.right > 400)):
+        Ball.centerX = 200
+        Ball.centerY = 200
+        Ball.dx = -Ball.dx
+        Ball.stepsPerSecond = 30
+        Ball.dx = 10
 #score
 
-    if(ball.centerX <= 20):
+    if(Ball.centerX <= 20):
         RS.value += .50
-    elif (ball.centerX >=380):
+    elif (Ball.centerX >=380):
         LS.value += .50
